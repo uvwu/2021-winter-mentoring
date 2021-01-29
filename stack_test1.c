@@ -18,15 +18,15 @@ int main() {
 
     element *r1 = stack_top(stack1);
     assert(strcmp(r1->name, "element two") == 0);
-    printf("%s\n", r1->name);
+    // printf("%s\n", r1->name);
 
     stack_pop(stack1);
     assert(strcmp(r1->name, "deleted") == 0);
-    printf("%s\n", r1->name);
+    // printf("%s\n", r1->name);
     
     element *r2 = stack_top(stack1);
     assert(strcmp(r2->name, "element one") == 0);
-    printf("%s\n", r2->name);
+    // printf("%s\n", r2->name);
 
-    printf("test1 pass");
+    puts("test1: 원소 내용 테스트 pass");
 }
