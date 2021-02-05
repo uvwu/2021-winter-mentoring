@@ -7,6 +7,7 @@
 queue *queue_alloc(int capacity){
     queue *this = malloc(sizeof(queue));
     this->body = malloc(sizeof(int) * capacity);
+    this->capacity =capacity; 
     this->front = this->rear = 0;
     return this;
 }
@@ -28,6 +29,8 @@ bool queue_is_empty(queue *this){
     return: 큐가 capacity만큼 차있다면 true, 아니면 false
 */
 bool queue_is_full(queue *this){
+    if(this->capacity==1)
+        return true;
     return (this->front == (this->rear + 1) % this->capacity);
 }
 
@@ -37,20 +40,18 @@ bool queue_is_full(queue *this){
     return: 성공시 true 반환, 실패시 false
 */
 bool queue_expand(queue *this){
-    if (queue_is_full(this)){
-        int tmp;
-        for(int i=0;i< this->capacity - this->front ;i++){
+    if (queue_is_full(this)){     
+        for(int j=0;j<this->capacity-this->front; j++){
+            int tmp;
             tmp=this->body[this->capacity-1];
             for(int i=0;i<this->capacity-1;i++){
                 this->body[this->capacity-1-i]=this->body[this->capacity-2-i];
             }
             this->body[0]=tmp;
-            this->front=(this->front+1)%this->capacity;
-            this->rear=(this->rear+1)%this->capacity;
         }
-        this->body=realloc(this->body,this->capacity*2);
-        this->rear=this->capacity-1;
+        this->body=realloc(this->body,this->capacity*2*sizeof(int));
         this->front=0;
+        this->rear=this->capacity-1;
         this->capacity*=2;
         return true;
     }
@@ -68,7 +69,7 @@ bool queue_enqueue(queue *this, int elem){
         if (res == false)
             return false;
     }
-    this->rear = (this->rear + 1) % this->capacity;
+    this->rear = (this->rear+1)%this->capacity;
     this->body[this->rear]=elem;
     return true;
 }
@@ -83,7 +84,7 @@ int *queue_front(queue *this) {
     if (queue_is_empty(this))
         return NULL;
     
-    return &this->body[(this->front ) % this->capacity];
+    return &this->body[(this->front+1) % this->capacity];
 }
 
 /*
