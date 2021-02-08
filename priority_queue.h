@@ -16,6 +16,12 @@ typedef struct {
 priority_queue *pq_alloc(int capacity);
 
 /**
+ * 우선순위큐 소멸자.
+ * 동적 할당한 공간들을 해재한다.
+ */
+void pq_free(priority_queue *this);
+
+/**
  * 우선순위 큐의 맨 위 원소를 반환한다.
  */
 int *pq_top(priority_queue *this);

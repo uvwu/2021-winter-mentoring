@@ -1,4 +1,6 @@
 #include "priority_queue.h"
+#include <stdio.h>
+#include <assert.h>
 
 int main() {
     priority_queue *pq = pq_alloc(4);
@@ -18,6 +20,7 @@ int main() {
     int should = 1;
     while (!pq_is_empty(pq)) {
         int elem = *pq_top(pq);
+        pq_dequeue(pq);
         assert(should == elem);
         should ++;
     }

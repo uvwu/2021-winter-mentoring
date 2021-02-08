@@ -1,6 +1,7 @@
 #include "priority_queue.h"
 #include <assert.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 int main() {
     priority_queue *pq = pq_alloc(8);
