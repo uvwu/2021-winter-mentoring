@@ -18,6 +18,7 @@ priority_queue *pq_alloc(int capacity){
     return this;
 }
 void pq_free(priority_queue *this){
+    free(this->body);
     free(this);
 }
 int *pq_top(priority_queue *this){
