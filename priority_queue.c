@@ -29,7 +29,7 @@ bool pq_enqueue(priority_queue *this, int elem){
     int now=++this->length;
     this->body[now]=elem;
     int tmp;
-    while(now=!1){
+    while(now!=1){
         if(this->body[now]>this->body[now/2]){
             tmp=this->body[now/2];
             this->body[now/2]=this->body[now];
@@ -44,14 +44,14 @@ bool pq_dequeue(priority_queue *this){
     int now=1;
 	int tmp;
 	this->body[1]=this->body[this->length--];
-	while(now < this->length){
-		if(this->body[now]>this->body[now*2]){
+	while(now <this->length){
+		if(this->body[now]<this->body[now*2]){
 			tmp=this->body[now*2];
 			this->body[now*2]=this->body[now];
 			this->body[now]=tmp;
 			now*=2;
 		}
-		else if(this->body[now]>this->body[now*2+1]){
+		else if(this->body[now]<this->body[now*2+1]){
 			tmp=this->body[now*2+1];
 			this->body[now*2+1]=this->body[now];
 			this->body[now]=tmp;
