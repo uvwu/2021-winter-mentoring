@@ -45,23 +45,22 @@ bool pq_dequeue(priority_queue *this){
     int now=1;
 	int tmp;
 	this->body[1]=this->body[this->length--];
-	while(now <this->length){
-		if(this->body[now]<this->body[now*2]){
-			tmp=this->body[now*2];
-			this->body[now*2]=this->body[now];
-			this->body[now]=tmp;
-			now*=2;
-		}
-		else if(this->body[now]<this->body[now*2+1]){
-			tmp=this->body[now*2+1];
-			this->body[now*2+1]=this->body[now];
-			this->body[now]=tmp;
-			now=now*2+1;
-		}
-		else
-			break;
-		
-	}
+	while(now <= this->length/2){
+        if((this->body[now]<this->body[now*2+1]) && (this->body[now*2+1]>this->body[now*2])){
+            tmp=this->body[now];
+            this->body[now]=this->body[now*2+1];
+            this->body[now*2+1]=tmp;
+            now=now*2+1;
+        }
+        else if ((this->body[now]<this->body[now*2])&&(this->body[now*2]>this->body[now*2+1])){
+            tmp=this->body[now];
+            this->body[now]=this->body[now*2];
+            this->body[now*2]=tmp;
+            now=now*2;
+        }
+        else
+            break;
+    }
 }
 bool pq_is_empty(priority_queue *this){
     return (this->length==0);
