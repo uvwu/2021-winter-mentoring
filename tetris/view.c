@@ -1,16 +1,11 @@
 #include "view.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct {
-    int padding_top;
-    int padding_left;
-    int board[14][10];
-} window;
+#include <string.h>
 
 const char view_blocks[][4] = {
-    " ",
-    "█",
+    "  ",
+    "□",
     "░",
     "▓",
 };
@@ -39,4 +34,8 @@ void window_render(window *this) {
             printf("%s", view_blocks[block]);
         }
     }
+}
+
+void window_update_board(window *this, int board[14][10]) {
+    memcpy(this->board, board, 14 * 10 * sizeof(int));
 }

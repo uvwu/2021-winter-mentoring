@@ -10,4 +10,6 @@ typedef enum {
     KEY_LEFT = 279168,
 } KEY_INPUT;
 
+int get_key(void);
+
 #endif /* KEYBOARD_H */
