@@ -1,24 +1,20 @@
 #include "keyboard.h"
 #include <termios.h>
+#include <unistd.h>
+#include <stdio.h>
 
-int get_key(int is_echo) {
-    int ch;
-    struct termios old;
-    struct termios current; /* 현재 설정된 terminal i/o 값을 backup함 */
-    tcgetattr(0, &old);     /* 현재의 설정된 terminal i/o에 일부 속성만 변경하기 위해 복사함 */
-    current = old;          /* buffer i/o를 중단함 */
-    current.c_lflag &= ~ICANON;
-    if (is_echo) {
-        // 입력값을 화면에 표시할 경우
-        current.c_lflag |= ECHO;
-    } else {
-        // 입력값을 화면에 표시하지 않을 경우
-        current.c_lflag &= ~ECHO;
-    }
-    /* 변경된 설정값으로 설정합니다.*/
-    tcsetattr(0, TCSANOW, &current);
-    ch = getchar();
-    tcsetattr(0, TCSANOW, &old);
+int get_key()
+{
+    int c;
+    struct termios oldattr, newattr;
 
-    return ch;
+    tcgetattr(STDIN_FILENO, &oldattr);           // 현재 터미널 설정 읽음
+    newattr = oldattr;
+    newattr.c_lflag &= ~(ICANON | ECHO);         // CANONICAL과 ECHO 끔
+    newattr.c_cc[VMIN] = 1;                      // 최소 입력 문자 수를 1로 설정
+    newattr.c_cc[VTIME] = 0;                     // 최소 읽기 대기 시간을 0으로 설정
+    tcsetattr(STDIN_FILENO, TCSANOW, &newattr);  // 터미널에 설정 입력
+    c = getchar();                               // 키보드 입력 읽음
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldattr);  // 원래의 설정으로 복구
+    return c;
 }

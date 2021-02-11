@@ -1,11 +1,6 @@
-#include "keyboard.h"
-#include <stdio.h>
+#include "model.h"
 
-typedef enum {
-    WHITE = 0, BLACK, BLUE, RED, GREEN,
-} color;
-
-const color blocks[][4][4] = {
+const int blocks[][4][4] = {
     {
         {0, 0, 0, 0},
         {0, 1, 1, 0},
@@ -19,14 +14,26 @@ const color blocks[][4][4] = {
         {0, 0, 1, 0},
     },
     {
-        {0, 0, 0, 0},
-        {1, 0, 0, 0},
-        {1, 1, 1, 1},
-        {0, 0, 0, 0},
+        {0, 1, 1, 0},
+        {0, 1, 0, 0},
+        {0, 1, 0, 0},
+        {0, 1, 0, 0},
+    },
+    {
+        {0, 1, 1, 0},
+        {0, 0, 1, 0},
+        {0, 0, 1, 0},
+        {0, 0, 1, 0},
     },
     {
         {0, 0, 0, 0},
         {1, 1, 0, 0},
+        {0, 1, 1, 0},
+        {0, 0, 0, 0},
+    },
+    {
+        {0, 0, 0, 0},
+        {0, 0, 1, 1},
         {0, 1, 1, 0},
         {0, 0, 0, 0},
     },
@@ -38,15 +45,10 @@ const color blocks[][4][4] = {
     },
 };
 
-typedef struct {
-    color board[10][10];
-} tetris;
+void tetris_put_block(tetris *this, int block[4][4], int y, int x) {
 
-int main() {
-    char k;
+}
 
-    while (1) {
-        k = get_key(0);
-        putchar(k);
-    }  
+void tetris_get_block(tetris *this, int **block) {
+
 }
