@@ -80,3 +80,11 @@ void tetris_get_block(tetris *this, int block[4][4]) {
     // int block_idx = queue_front(this->next_block_queue);
     // memcpy(this->block, blocks[block_idx], sizeof(int) * 16)
 }
+
+void tetris_get_next_block(tetris *this, int next_block[4][4]) {
+
+}
+
+void tetris_get_hold_block(tetris *this, int hold_block[4][4]) {
+    
+}
