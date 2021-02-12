@@ -33,6 +33,12 @@ int main() {
         default:
             break;
         }
-        render_board(model->board, BOARD_HEIGHT, BOARD_WIDTH);
+        tetris_update_board(model, board);
+        render_board(model->board);
+        render_next_block(model->block);
+
+        tetris_needs_new_block(model);
     }
+
+    tetris_free(model);
 }

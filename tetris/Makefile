@@ -1,7 +1,7 @@
 CC = gcc
 TARGET = a.out
-OBJS = controller.o model.o view.o keyboard.o
-SRCS = controller.c model.c view.c keyboard.c
+OBJS = controller.o model.o view.o keyboard.o queue.o
+SRCS = controller.c model.c view.c keyboard.c queue.c
 OPT = -Wall -pedantic
 LIB = -lncurses
 

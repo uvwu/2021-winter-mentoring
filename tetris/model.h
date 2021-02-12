@@ -7,19 +7,23 @@
 #define BLOCK_SIZE 16
 #define BLOCK_NUM 6
 
+#include "queue.h"
+
 typedef struct {
     int board[BOARD_HEIGHT][BOARD_WIDTH];
     int block[4][4];
     int hold_block[4][4];
     
-    // queue *next_block_queue;
+    queue *next_block_queue;
 } tetris;
 
 tetris *tetris_alloc(void);
 
 void tetris_free(tetris *this);
 
-void tetris_put_block(tetris *this, int block[4][4], int y, int x);
+void tetris_needs_new_block(tetris *this);
+
+void tetris_update_board(tetris *this, int board[BOARD_HEIGHT][BOARD_WIDTH]);
 
 void tetris_get_board(tetris *this, int board[BOARD_HEIGHT][BOARD_WIDTH]);
 
