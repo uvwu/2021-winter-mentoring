@@ -40,6 +40,7 @@ bool pq_enqueue(priority_queue *this, int elem){
         else
             break;
     }
+	return true;
 }
 bool pq_dequeue(priority_queue *this){
     int now=1;
@@ -61,6 +62,7 @@ bool pq_dequeue(priority_queue *this){
         else
             break;
     }
+	return true;
 }
 bool pq_is_empty(priority_queue *this){
     return (this->length==0);
