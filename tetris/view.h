@@ -1,16 +1,19 @@
 #ifndef VIEW_H
 #define VIEW_H
 
-typedef struct {
-    int padding_top;
-    int padding_left;
-    int board[14][10];
-} window;
+/**
+ * board를 화면에 출력해준다.
+ */
+void render_board(int board[20][10], int height, int width);
 
-window *window_alloc(int padding_top, int padding_left);
+/**
+ * 다음 블록을 출력해준다.
+ */
+void render_next_block(int block[4][4]);
 
-void window_update_board(window *this, int board[14][10]);
-
-void window_render(window *this);
+/**
+ * 홀드 하고 있는 블록을 출력한다.
+ */
+void render_hold_block(int block[4][4]);
 
 #endif /* VIEW_H */

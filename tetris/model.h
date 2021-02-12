@@ -1,9 +1,16 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+#define BOARD_HEIGHT 20
+#define BOARD_WIDTH 10
+#define BLOCK_LEN 4
+#define BLOCK_SIZE 16
+#define BLOCK_NUM 6
+
 typedef struct {
-    int board[14][10];
+    int board[BOARD_HEIGHT][BOARD_WIDTH];
     int block[4][4];
+    int hold_block[4][4];
     
     // queue *next_block_queue;
 } tetris;
@@ -14,6 +21,12 @@ void tetris_free(tetris *this);
 
 void tetris_put_block(tetris *this, int block[4][4], int y, int x);
 
-void tetris_get_block(tetris *this, int **block);
+void tetris_get_board(tetris *this, int board[BOARD_HEIGHT][BOARD_WIDTH]);
+
+void tetris_get_block(tetris *this, int block[4][4]);
+
+void tetris_get_next_block(tetris *this, int next_block[4][4]);
+
+void tetris_get_hold_block(tetris *this, int hold_block[4][4]);
 
 #endif /* MODEL_H */

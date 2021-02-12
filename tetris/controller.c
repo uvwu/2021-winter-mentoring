@@ -3,14 +3,36 @@
 #include "model.h"
 #include <stdio.h>
 
+
+
 int main() {
-    int k;
-    window *win = window_alloc(2, 4);
+    int key;
     tetris *model = tetris_alloc();
+    int board[BOARD_HEIGHT][BOARD_WIDTH];
+    int block[BLOCK_LEN][BLOCK_LEN];
+    int next_block[BLOCK_LEN][BLOCK_LEN];
+    int hold_block[BLOCK_LEN][BLOCK_LEN];
 
     while (1) {
-        window_update_board(win, model->board);
-        k = get_key();
-        window_render(win);
+        tetris_get_board(model, board);
+        tetris_get_block(model, block);
+        tetris_get_next_block(model, next_block);
+        tetris_get_hold_block(model, hold_block);
+        
+        key = get_key();
+        switch (key)
+        {
+        case KEY_UP:
+            break;
+        case KEY_DOWN:
+            break;
+        case KEY_LEFT:
+            break;
+        case KEY_RIGHT:
+            break;
+        default:
+            break;
+        }
+        render_board(model->board, BOARD_HEIGHT, BOARD_WIDTH);
     }
 }

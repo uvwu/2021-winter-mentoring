@@ -4,7 +4,7 @@
 #include <string.h>
 
 const char view_blocks[][4] = {
-    "  ",
+    " ",
     "□",
     "░",
     "▓",
@@ -14,28 +14,21 @@ static void move_cursor(int y, int x) {
     printf("\033[%dd\033[%dG", y, x);
 }
 
-window *window_alloc(int padding_top, int padding_left) {
-    window *this = malloc(sizeof(window));
-    this->padding_top = padding_top;
-    this->padding_left = padding_left;
+const int board_by = 4;
+const int board_bx = 8;
 
-    return this;
-}
 
-void window_render(window *this) {
-    int by = this->padding_top;
-    int bx = this->padding_left;
+/**
+ * board를 화면에 출력해준다.
+ */
+void render_board(int board[20][10], int height, int width) {
     int block;
-    
-    for (int y = 0; y < 14; y++) {
-        for (int x = 0; x < 10; x++) {
-            move_cursor(by + y, bx + x);
-            block = this->board[y][x];
+
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            move_cursor(board_by + y, board_bx + x * 2);
+            block = board[y][x];
             printf("%s", view_blocks[block]);
         }
     }
-}
-
-void window_update_board(window *this, int board[14][10]) {
-    memcpy(this->board, board, 14 * 10 * sizeof(int));
 }
