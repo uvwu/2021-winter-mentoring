@@ -13,8 +13,8 @@ $(TARGET): $(OBJS)
 run:
 	./$(TARGET)
 
-*.o: *.c
-	$(CC) -c -o $@ $^
+.c.o:
+	$(CC) -c -o $@ $<
 
 test: all run
 
