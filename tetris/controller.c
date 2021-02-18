@@ -32,20 +32,25 @@ int main() {
         case KEY_RIGHT:
             render_msg("right");
             break;
+        case 'q':
+        case 'Q':
+            goto FIN;
         default:
             break;
         }
         
         render_board(model->board);
-        render_next_block(model->block);
+        render_next_block(model->next_block);
         refresh();
 
-        if (new_block_needed) {
+        // if (new_block_needed) {
             tetris_set_needs_new_block(model);
-        }
+        // }
     }
 
+FIN:
     endwin();
 
     tetris_free(model);
+    return 0;
 }

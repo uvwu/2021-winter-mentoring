@@ -102,6 +102,7 @@ void tetris_copy_next_block(tetris *this, int next_block[4][4]) {
 void tetris_set_needs_new_block(tetris *this) {
     tetris_copy_next_block(this, this->block);
     queue_dequeue(this->next_block_queue);
+    tetris_copy_next_block(this, this->next_block);
     queue_enqueue(this->next_block_queue, rand_number_factory(BLOCK_NUM));
 }
 
